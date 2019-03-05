@@ -1,0 +1,25 @@
+{
+  "name": "swagger-typegen",
+  "version": "0.0.1",
+  "description": "generate source-code types from swagger-specification file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Matthias Margot <matthiasmargot@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "prettier": "^1.16.4",
+    "swagger-parser": "^6.0.5"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatthiasMargot/swagger-typegen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MatthiasMargot/swagger-typegen/issues"
+  },
+  "homepage": "https://github.com/MatthiasMargot/swagger-typegen#readme"
+}
