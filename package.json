@@ -4,7 +4,8 @@
   "description": "generate source-code types from swagger-specification file",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "keywords": [],
   "author": "Matthias Margot <matthiasmargot@hotmail.com>",
@@ -13,7 +14,9 @@
     "prettier": "^1.16.4",
     "swagger-parser": "^6.0.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^24.3.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MatthiasMargot/swagger-typegen.git"
