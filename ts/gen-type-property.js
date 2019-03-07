@@ -1,7 +1,7 @@
 const typeAliases = require('../type-aliases')
 
 function genTypeProperty (typeKey, required, value) {
-  const requiredSymbol = required ? '?' : ''
+  const requiredSymbol = required ? '' : '?'
 
   const typeValue =
     typeAliases.ts[value]
