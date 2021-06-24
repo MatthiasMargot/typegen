@@ -11,7 +11,9 @@
   "author": "Matthias Margot <matthiasmargot@hotmail.com>",
   "license": "MIT",
   "dependencies": {
+    "commander": "^7.2.0",
     "prettier": "^1.16.4",
+    "ramda": "^0.27.1",
     "swagger-parser": "^6.0.5"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
-const removeWhitespace = require('./remove-whitespace')
+const trimAll = require('./trim-all')
 
-describe('removeWhitespace()', () => {
+describe('trimAll()', () => {
   it('removes any whitespace from a string', () => {
     const stringWithLotsOfWhitespace = `
 
@@ -10,7 +10,7 @@ describe('removeWhitespace()', () => {
     + ' '
     + 'SOME MORE WHITESPACE'
 
-    const result = removeWhitespace(stringWithLotsOfWhitespace)
+    const result = trimAll(stringWithLotsOfWhitespace)
 
     expect(result).toEqual('TONSOFWHITESPACESOMEMOREWHITESPACE')
   })

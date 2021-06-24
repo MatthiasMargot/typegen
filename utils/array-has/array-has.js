@@ -1,4 +1,4 @@
-function arrayHas(array, item) {
+function arrayHas (array, item) {
   return array.indexOf(item) !== -1
 }
 

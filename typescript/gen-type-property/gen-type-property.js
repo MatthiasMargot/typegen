@@ -1,4 +1,4 @@
-const typeAliases = require('../type-aliases')
+const typeAliases = require('../../type-aliases')
 
 function genTypeProperty (typeKey, required, value) {
   const requiredSymbol = required ? '' : '?'
@@ -8,7 +8,7 @@ function genTypeProperty (typeKey, required, value) {
       ? typeAliases.ts[value]
       : value
 
-  return `${typeKey}${requiredSymbol}: ${typeValue};`
+  return `'${typeKey}'${requiredSymbol}: ${typeValue};`
 }
 
 module.exports = genTypeProperty

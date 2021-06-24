@@ -1,6 +1,6 @@
 const genEnumBody = require('./gen-enum-body')
 
-const removeWhitespace = require('../utils/remove-whitespace')
+const trimAll = require('../utils/trim-all')
 
 describe('genEnumBody()', () => {
   it('generates a typescript enum\'s body given a swagger definition enum', () => {
@@ -17,9 +17,9 @@ describe('genEnumBody()', () => {
     const expected = `
       foo = 'foo',
       bar = 'bar',
-      baz = 'baz',
+      baz = 'baz'
     `
 
-    expect(removeWhitespace(result)).toEqual(removeWhitespace(expected))
+    expect(trimAll(result)).toEqual(trimAll(expected))
   })
 })

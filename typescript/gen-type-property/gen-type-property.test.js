@@ -9,25 +9,25 @@ describe('genUnion()', () => {
 
     const result = genTypeProperty(
       'key',
-      true,
+      isRequired,
       'string',
     )
 
-    const expected = `key: string;`
+    const expected = `'key': string;`
 
     expect(result).toEqual(expected)
   })
 
   it('generates an optional typescript property', () => {
-    const isRequired = true
+    const isRequired = false
 
     const result = genTypeProperty(
       'key',
-      false,
+      isRequired,
       'string',
     )
 
-    const expected = `key?: string;`
+    const expected = `'key'?: string;`
 
     expect(result).toEqual(expected)
   })
@@ -37,11 +37,11 @@ describe('genUnion()', () => {
 
     const result = genTypeProperty(
       'key',
-      true,
+      isRequired,
       'integer',
     )
 
-    const expected = `key: number;`
+    const expected = `'key': number;`
 
     expect(result).toEqual(expected)
   })
