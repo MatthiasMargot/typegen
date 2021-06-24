@@ -5,10 +5,10 @@ Swagger Typegen
 ## How to generate the type file
 
 ```sh
-$ node cli swagger-input-path swagger-output-path
+$ node cli input.json output.ts
 ```
 
-- swagger-input-path - the path to your swagger file in json format. This param is required.
+- swagger-input-path - the path to your swagger file in JSON format. This param is required.
 - swagger-output-path - the path to your output file. This param is required.
 
 Example:
