@@ -9,7 +9,7 @@ $ node cli swagger-input-path swagger-output-path
 ```
 
 - swagger-input-path - the path to your swagger file in json format. This param is required.
-- swagger-output-path - the path to your output file. This param is optional, by missing this param a file
+- swagger-output-path - the path to your output file. This param is required.
 
 Example:
 
