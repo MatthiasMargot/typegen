@@ -26,10 +26,6 @@
           },
           "tags": {
             "type": "array",
-            "xml": {
-              "name": "tag",
-              "wrapped": true
-            },
             "items": {
               "$ref": "#/components/schemas/Tag"
             }
