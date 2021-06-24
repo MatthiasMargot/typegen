@@ -2,7 +2,7 @@ language: node_js
 
 node_js: 15
 
-if: type = pull_request
+if: branch = master OR type = pull_request
 
 install:
   - npm install
