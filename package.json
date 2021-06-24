@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "example": "node cli example/input.json example/output.ts"
   },
   "keywords": [],
   "author": "Matthias Margot <matthiasmargot@hotmail.com>",
