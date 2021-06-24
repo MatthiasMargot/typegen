@@ -1,6 +1,6 @@
 const genEnumBody = require('./gen-enum-body')
 
-const trimAll = require('../utils/trim-all')
+const trimAll = require('../../utils/trim-all')
 
 describe('genEnumBody()', () => {
   it('generates a typescript enum\'s body given a swagger definition enum', () => {
