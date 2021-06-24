@@ -9,7 +9,7 @@ const typescript = require('./typescript')
  * const SwaggerParser = require('swagger-parser')
  */
 
-function typegen (pathToSource, pathToDestination) {
+function typegen (pathToSource, pathToDestination = './swagger-typegen.ts') {
   const source = fs.readFileSync(pathToSource, { encoding: 'utf-8' })
 
   const json = JSON.parse(source)
@@ -20,7 +20,7 @@ function typegen (pathToSource, pathToDestination) {
 }
 
 program
-  .arguments('<pathToSource> <pathToDestination>')
+  .arguments('<pathToSource> [pathToDestination]')
   .action(typegen)
 
 program.parse(process.argv)
