@@ -5,8 +5,8 @@ node_js: 15
 if: branch = master OR type = pull_request
 
 install:
-  - yarn install
-  - yarn install -g codecov
+  - yarn
+  - yarn global add codecov
 
 script:
   - yarn test:coverage && codecov
