@@ -9,18 +9,25 @@ const typescript = require('./typescript')
  * const SwaggerParser = require('swagger-parser')
  */
 
-function typegen (pathToSource, pathToDestination) {
-  const source = fs.readFileSync(pathToSource, { encoding: 'utf-8' })
+function typegen (pathToSource, options) {
+ const source = fs.readFileSync(pathToSource, { encoding: 'utf-8' })
 
   const json = JSON.parse(source)
 
   const output = typescript(json)
 
-  fs.writeFileSync(pathToDestination, output)
+  if (options.output) {
+    fs.writeFileSync(options.output, output)
+    return
+  }
+
+  process.stdout.write(output)
 }
 
 program
-  .arguments('<pathToSource> <pathToDestination>')
+  .name('typegen')
+  .arguments('<pathToSource>')
+  .option('-o, --output <path>', 'write the generated output to a path')
   .action(typegen)
 
 program.parse(process.argv)
