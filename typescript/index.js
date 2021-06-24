@@ -15,10 +15,12 @@ const genTypes = pipe(
   join('\n\n')
 )
 
-function typescript (swaggerJson) {
-  const { components: { schemas } } = swaggerJson
-
-  const file = genTypes(schemas)
+function typescript(swaggerJson) {
+  if (!swaggerJson.components || (swaggerJson.components && !swaggerJson.components.schemas)) {
+    return console.log('ERROR: schemas property is not available')
+  }
+  
+  const file = genTypes(swaggerJson.components.schemas)
 
   const prettified = prettier.format(
     file,
