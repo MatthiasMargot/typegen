@@ -6,14 +6,15 @@ Swagger Typegen
 ## How to generate the type file
 
 ```sh
-$ node cli input.json output.ts
+ node cli input.json [-o,--output] output
 ```
 
-- swagger-input-path - the path to your swagger file in JSON format. This param is required.
-- swagger-output-path - the path to your output file. This param is required.
+Parameters
+- input (required) - The path to swagger file in JSON format
+- -o, --output [filename] (optional) - the path to the output file. By skipping this param, the output is returned in the terminal.
 
 Example:
 
 ```sh
-$ node cli example/input.json example/output.ts
+$ node cli example/input.json -o example/output.ts
 ```
