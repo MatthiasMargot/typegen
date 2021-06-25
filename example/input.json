@@ -1,4 +1,130 @@
 {
+  "paths": {
+    "/users": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+
+          "401": {
+            "content": {}
+          },
+  
+          "500": {
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "/users/{id}": {
+      "delete": {
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+
+        "responses": {
+          "204": {
+            "content": {}
+          },
+
+          "401": {
+            "content": {}
+          },
+  
+          "500": {
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "/users/{id}/tags": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Tag"
+                    }
+                  },
+                  "address": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "username",
+                  "email"
+                ]
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+  
+          "401": {
+            "content": {}
+          },
+
+          "500": {
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+
   "components": {
     "schemas": {
       "User": {
