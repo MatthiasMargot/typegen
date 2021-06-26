@@ -1,7 +1,4 @@
-const genTypeProperty = require('./gen-type-property')
-
-const typeKey = 'key'
-const propertyValue = 'value'
+const genTypeProperty = require('./gen-property')
 
 describe('genUnion()', () => {
   it('generates a typescript property', () => {
