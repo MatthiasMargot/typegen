@@ -1,15 +1,15 @@
 {
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Acme Inc. REST API",
+    "version": "1.0.0"
+  },
   "paths": {
     "/users": {
       "get": {
-        "requestBody": {
-          "content": {
-            "application/json": {}
-          }
-        },
-
         "responses": {
           "200": {
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -23,10 +23,12 @@
           },
 
           "401": {
+            "description": "",
             "content": {}
           },
   
           "500": {
+            "description": "",
             "content": {}
           }
         }
@@ -34,23 +36,30 @@
     },
 
     "/users/{id}": {
-      "delete": {
-        "requestBody": {
-          "content": {
-            "application/json": {}
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        },
-
+        }
+      ],
+      "delete": {
         "responses": {
           "204": {
+            "description": "",
             "content": {}
           },
 
           "401": {
+            "description": "",
             "content": {}
           },
   
           "500": {
+            "description": "",
             "content": {}
           }
         }
@@ -58,6 +67,16 @@
     },
 
     "/users/{id}/tags": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
       "post": {
         "requestBody": {
           "content": {
@@ -101,6 +120,7 @@
 
         "responses": {
           "201": {
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -114,10 +134,12 @@
           },
   
           "401": {
+            "description": "",
             "content": {}
           },
 
           "500": {
+            "description": "",
             "content": {}
           }
         }
@@ -131,8 +153,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "required": true
+            "type": "integer"
           },
           "username": {
             "type": "string"
