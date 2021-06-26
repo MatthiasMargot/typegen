@@ -1,6 +1,5 @@
-const genTypeBody = require('../gen-type-body')
+const { genTypeValue, genTypeBody} = require('../gen-type-body')
 const genEnumBody = require('../gen-enum-body')
-const genTypeValue = require('../gen-type-value')
 
 function fitsTsInterface (definition) {
   return definition.type === 'object'
