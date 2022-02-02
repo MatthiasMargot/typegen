@@ -1,33 +1,40 @@
-const { join, pipe } = require('ramda')
+const { join, pipe, map } = require('ramda')
 
 const genTypeProperty = require('../gen-type-property/gen-type-property')
 const genUnion = require('../gen-union/gen-union')
 const arrayHas = require('../../utils/array-has')
 const arrayLast = require('../../utils/array-last')
 const entries = require('../../utils/entries')
+const typeAliases = require('../../type-aliases')
 
 function genTypeValue (property) {
-  if (property.$ref) {
-    return arrayLast(property.$ref.split('/'))
+  const { $ref, items, type } = property
+
+  if ($ref) {
+    return arrayLast($ref.split('/'))
   }
 
   if (property.enum) {
     return genUnion(property.enum)
   }
 
-  if (property.type === 'array') {
-    return `${genTypeValue(property.items)}[]`
+  if (type === 'array') {
+    return `${genTypeValue(items)}[]`
   }
 
-  if (property.type === 'object') {
-    return (
-      `{
-        ${genTypeBody(property)}
-      }`
-    )
+  if (type === 'object') {
+    if (property.allOf) {
+      return join('&')(
+        map(genTypeValue)(
+          property.allOf
+        )
+      )
+    }
+
+    return `{ ${genTypeBody(property)} }`
   }
 
-  return property.type
+  return typeAliases.ts[type] ? typeAliases.ts[type] : type
 }
 
 const genTypeBody = pipe(
@@ -36,7 +43,8 @@ const genTypeBody = pipe(
       ([ key, property ]) => genTypeProperty(
         key,
         required && arrayHas(required, key),
-        genTypeValue(property)
+        genTypeValue(property),
+        property.description
       )
     ),
   join('')
