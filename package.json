@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "generate source-code types from swagger-specification file",
   "main": "index.js",
+  "bin": {
+    "typegen": "cli.js"
+  },
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
