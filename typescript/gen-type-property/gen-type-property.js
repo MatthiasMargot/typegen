@@ -1,7 +1,7 @@
 function genTypeProperty (typeKey, required, value, description) {
   const requiredSymbol = required ? '' : '?'
 
-  return `${description ? `/* ${description} */\n` : ''}'${typeKey}'${requiredSymbol}: ${value};\n`
+  return `${description ? `\n/* ${description} */\n` : ''}'${typeKey}'${requiredSymbol}: ${value};`
 }
 
 module.exports = genTypeProperty
