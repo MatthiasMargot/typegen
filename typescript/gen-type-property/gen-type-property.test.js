@@ -32,16 +32,17 @@ describe('genUnion()', () => {
     expect(result).toEqual(expected)
   })
 
-  it('aliases types with different names in swagger than in ts', () => {
+  it('generates a description', () => {
     const isRequired = true
 
     const result = genTypeProperty(
       'key',
       isRequired,
-      'integer',
+      'string',
+      'description'
     )
 
-    const expected = `'key': number;`
+    const expected = `\n/* description */\n'key': string;`
 
     expect(result).toEqual(expected)
   })
