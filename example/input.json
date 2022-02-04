@@ -153,6 +153,7 @@
         "type": "object",
         "properties": {
           "id": {
+            "description": "The id of the user",
             "type": "integer"
           },
           "username": {

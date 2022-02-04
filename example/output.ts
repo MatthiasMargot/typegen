@@ -1,4 +1,5 @@
 export interface User {
+  /* The id of the user */
   id: number;
   username: string;
   firstName?: string;
@@ -6,6 +7,7 @@ export interface User {
   email: string;
   isActive: boolean;
   tags?: Tag[];
+  /* Order Status */
   badge?: "pro" | "hero" | "superhero";
   address?: string[];
 }
