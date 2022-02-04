@@ -6,7 +6,7 @@ if: branch = master OR type = pull_request
 
 install:
   - yarn
-  - yarn global add codecov
 
 script:
-  - yarn test:coverage && codecov
+  - yarn test:coverage
+  - yarn codecov

@@ -10,6 +10,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
+    "codecov": "codecov",
     "example": "node cli example/input.json -o example/output.ts"
   },
   "keywords": [],
