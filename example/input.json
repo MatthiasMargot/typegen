@@ -15,7 +15,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/User"
+                    "$ref": "#/components/schemas/UserResponse"
                   }
                 }
               }
@@ -126,7 +126,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/User"
+                    "$ref": "#/components/schemas/UserResponse"
                   }
                 }
               }
@@ -149,7 +149,8 @@
 
   "components": {
     "schemas": {
-      "User": {
+      "UserResponse": {
+        "title": "User",
         "type": "object",
         "properties": {
           "id": {
