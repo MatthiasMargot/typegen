@@ -16,13 +16,15 @@ function getTypeKeyword (typeDefinition) {
   return 'type'
 }
 
-function genType (typeName, typeDefinition) {
+function genType (typeKey, typeDefinition) {
   const typeKeyword = getTypeKeyword(typeDefinition)
 
   const typeBody =
     typeKeyword === 'enum'
       ? genEnumBody(typeDefinition)
       : genTypeBody(typeDefinition)
+
+  const typeName = typeDefinition.title || typeKey
 
   return (
     `${typeKeyword} ${typeName} {
