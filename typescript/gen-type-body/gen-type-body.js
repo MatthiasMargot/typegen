@@ -7,11 +7,13 @@ const arrayLast = require('../../utils/array-last')
 const entries = require('../../utils/entries')
 const typeAliases = require('../../type-aliases')
 
-function genTypeValue (property) {
+function genTypeValue (property, schemas) {
   const { $ref, items, type } = property
 
   if ($ref) {
-    return arrayLast($ref.split('/'))
+    const refName = arrayLast($ref.split('/'))
+
+    return schemas[refName].title || refName
   }
 
   if (property.enum) {
@@ -19,7 +21,7 @@ function genTypeValue (property) {
   }
 
   if (type === 'array') {
-    return `${genTypeValue(items)}[]`
+    return `${genTypeValue(items, schemas)}[]`
   }
 
   if (type === 'object') {
@@ -38,15 +40,14 @@ function genTypeValue (property) {
 }
 
 const genTypeBody = pipe(
-  ({ properties = {}, required }) =>
-    entries(properties).map(
-      ([ key, property ]) => genTypeProperty(
-        key,
-        required && arrayHas(required, key),
-        genTypeValue(property),
-        property.description
-      )
-    ),
+  ({ properties = {}, required }, schemas) => entries(properties).map(
+    ([ key, property ]) => genTypeProperty(
+      key,
+      required && arrayHas(required, key),
+      genTypeValue(property, schemas),
+      property.description
+    )
+  ),
   join('')
 )
 

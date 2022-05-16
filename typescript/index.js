@@ -5,7 +5,7 @@ const spread = require('../utils/spread')
 const genType = require('./gen-type')
 
 const genTypes = pipe(
-  Object.entries,
+  schemas => Object.entries(schemas).map(entries => [ ...entries, schemas ]),
   map(
     pipe(
       spread(genType),
