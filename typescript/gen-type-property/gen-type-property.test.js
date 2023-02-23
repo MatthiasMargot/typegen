@@ -1,49 +1,67 @@
-const genTypeProperty = require('./gen-type-property')
+const genTypeProperty = require("./gen-type-property");
 
-const typeKey = 'key'
-const propertyValue = 'value'
+const typeKey = "key";
+const propertyValue = "value";
 
-describe('genUnion()', () => {
-  it('generates a typescript property', () => {
-    const isRequired = true
+describe("genUnion()", () => {
+  it("generates a typescript property", () => {
+    const isRequired = true;
+    const isNullable = false;
+
+    const result = genTypeProperty("key", isRequired, isNullable, "string");
+
+    const expected = `'key': string;`;
+
+    expect(result).toEqual(expected);
+  });
+
+  it("generates a nullable typescript property", () => {
+    const isRequired = true;
+    const isNullable = true;
+
+    const result = genTypeProperty("key", isRequired, isNullable, "string");
+
+    const expected = `'key': string | null;`;
+
+    expect(result).toEqual(expected);
+  });
+
+  it("generates an optional typescript property", () => {
+    const isRequired = false;
+    const isNullable = false;
+
+    const result = genTypeProperty("key", isRequired, isNullable, "string");
+
+    const expected = `'key'?: string;`;
+
+    expect(result).toEqual(expected);
+  });
+
+  it("generates an optional & nullable typescript property", () => {
+    const isRequired = false;
+    const isNullable = true;
+
+    const result = genTypeProperty("key", isRequired, isNullable, "string");
+
+    const expected = `'key'?: string | null;`;
+
+    expect(result).toEqual(expected);
+  });
+
+  it("generates a description", () => {
+    const isRequired = true;
+    const isNullable = false;
 
     const result = genTypeProperty(
-      'key',
+      "key",
       isRequired,
-      'string',
-    )
+      isNullable,
+      "string",
+      "description"
+    );
 
-    const expected = `'key': string;`
+    const expected = `\n/* description */\n'key': string;`;
 
-    expect(result).toEqual(expected)
-  })
-
-  it('generates an optional typescript property', () => {
-    const isRequired = false
-
-    const result = genTypeProperty(
-      'key',
-      isRequired,
-      'string',
-    )
-
-    const expected = `'key'?: string;`
-
-    expect(result).toEqual(expected)
-  })
-
-  it('generates a description', () => {
-    const isRequired = true
-
-    const result = genTypeProperty(
-      'key',
-      isRequired,
-      'string',
-      'description'
-    )
-
-    const expected = `\n/* description */\n'key': string;`
-
-    expect(result).toEqual(expected)
-  })
-})
+    expect(result).toEqual(expected);
+  });
+});
