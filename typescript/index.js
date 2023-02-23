@@ -1,35 +1,29 @@
-const prettier = require('prettier')
-const { pipe, join, map } = require('ramda')
+const prettier = require("prettier");
+const { pipe, join, map } = require("ramda");
 
-const spread = require('../utils/spread')
-const genType = require('./gen-type')
+const spread = require("../utils/spread");
+const genApiTypes = require("./gen-api/gen-api-types");
+const genType = require("./gen-type");
 
 const genTypes = pipe(
-  Object.entries,
-  map(
-    pipe(
-      spread(genType),
-      type => `export ${type}`
-    )
-  ),
-  join('\n\n')
-)
+  (schemas) => Object.entries(schemas).map((entries) => [...entries, schemas]),
+  map(pipe(spread(genType), (type) => `export ${type}`)),
+  join("\n\n")
+);
 
 function typescript(swaggerJson) {
-  const { components: { schemas } = {} } = swaggerJson
+  const { components: { schemas } = {}, paths } = swaggerJson;
 
-  if (!schemas) {
-    return console.log('your schemas property is empty')
-  }
+  if (!schemas) return console.log("your schemas property is empty");
 
-  const file = genTypes(schemas)
+  const types = genTypes(schemas);
+  const apiTypes = genApiTypes(schemas, paths);
 
-  const prettified = prettier.format(
-    file,
-    { parser: 'typescript' }
-  )
+  const prettified = prettier.format([types, apiTypes].join("\n\n"), {
+    parser: "typescript",
+  });
 
-  return prettified
+  return prettified;
 }
 
-module.exports = typescript
+module.exports = typescript;

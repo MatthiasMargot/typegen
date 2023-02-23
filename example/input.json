@@ -176,7 +176,7 @@
           "tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Tag"
+              "$ref": "#/components/schemas/TagResponse"
             }
           },
           "badge": {
@@ -202,7 +202,8 @@
           "isActive"
         ]
       },
-      "Tag": {
+      "TagResponse": {
+        "title": "Tag",
         "type": "object",
         "properties": {
           "id": {

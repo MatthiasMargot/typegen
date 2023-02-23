@@ -1,36 +1,22 @@
-const genTypeBody = require('../gen-type-body')
-const genEnumBody = require('../gen-enum-body/gen-enum-body')
+const genTypeBody = require("../gen-type-body");
+const genEnumBody = require("../gen-enum-body/gen-enum-body");
 
-function fitsTsInterface (definition) {
-  /*
-   * TODO: logic for determining ts keyword 'type' vs 'interface'
-   * */
-  return true
+function getTypeKeyword(typeDefinition) {
+  if (typeDefinition.enum) return "enum";
+  return "type";
 }
 
-function getTypeKeyword (typeDefinition) {
-  if (typeDefinition.enum) { return 'enum' }
+function genType(typeKey, typeDefinition, schemas) {
+  const typeKeyword = getTypeKeyword(typeDefinition);
+  const isEnum = typeKeyword === "enum";
 
-  if (fitsTsInterface(typeDefinition)) { return 'interface' }
+  const typeBody = isEnum
+    ? genEnumBody(typeDefinition)
+    : genTypeBody(typeDefinition, schemas);
 
-  return 'type'
+  const typeName = typeKey;
+
+  return `${typeKeyword} ${typeName} ${isEnum ? "" : "="} { ${typeBody} }`;
 }
 
-function genType (typeKey, typeDefinition) {
-  const typeKeyword = getTypeKeyword(typeDefinition)
-
-  const typeBody =
-    typeKeyword === 'enum'
-      ? genEnumBody(typeDefinition)
-      : genTypeBody(typeDefinition)
-
-  const typeName = typeDefinition.title || typeKey
-
-  return (
-    `${typeKeyword} ${typeName} {
-      ${typeBody}
-    }`
-  )
-}
-
-module.exports = genType
+module.exports = genType;
