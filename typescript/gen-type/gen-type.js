@@ -8,15 +8,15 @@ function getTypeKeyword(typeDefinition) {
 
 function genType(typeKey, typeDefinition, schemas) {
   const typeKeyword = getTypeKeyword(typeDefinition);
+  const isEnum = typeKeyword === "enum";
 
-  const typeBody =
-    typeKeyword === "enum"
-      ? genEnumBody(typeDefinition)
-      : genTypeBody(typeDefinition, schemas);
+  const typeBody = isEnum
+    ? genEnumBody(typeDefinition)
+    : genTypeBody(typeDefinition, schemas);
 
   const typeName = typeKey;
 
-  return `${typeKeyword} ${typeName} { ${typeBody} }`;
+  return `${typeKeyword} ${typeName} ${isEnum ? "" : "="} { ${typeBody} }`;
 }
 
 module.exports = genType;
